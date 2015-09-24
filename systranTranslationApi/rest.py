@@ -168,7 +168,7 @@ class RESTClientObject(object):
             msg = email.message_from_string(message)
 
             if not msg.is_multipart():
-                result["content"] = response.data
+                result["output"] = response.data
                 print("Couldn't decode multipart body")
             else:
                 for payload in msg.get_payload():
@@ -179,7 +179,7 @@ class RESTClientObject(object):
                     else:
                         result["output"] = payload.get_payload()
         else:
-            result["content"] = response.data
+            result["output"] = response.data
 
         return result
 
