@@ -1,5 +1,5 @@
-# Systran Natural Language Processing Python Client Library.
-This is a Python implementation of the [Systran Natural Language Processing](https://platform.systran.net/reference/translation) Client Library.
+# Systran Translation Python Client Library.
+This is a Python implementation of the [Systran Translation](https://platform.systran.net/reference/translation) Client Library.
 
 ## Requirements.
 Python 2.7 and later.
