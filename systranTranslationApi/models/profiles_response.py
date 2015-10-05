@@ -32,12 +32,17 @@ class ProfilesResponse(object):
         :param dict attribute_map: The key is attribute name and the value is json key in definition.
         """
         self.systran_types = {
+            'error': 'ErrorResponse',
             'profiles': 'list[Profile]'
         }
 
         self.attribute_map = {
+            'error': 'error',
             'profiles': 'profiles'
         }
+        
+        # Error at request level
+        self.error = None  # ErrorResponse
         
         # Array of profiles
         self.profiles = None  # list[Profile]

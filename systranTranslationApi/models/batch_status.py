@@ -38,7 +38,7 @@ class BatchStatus(object):
             'expire_at': 'float',
             'finished_at': 'float',
             'requests': 'list[BatchRequest]',
-            'error': 'str'
+            'error': 'ErrorResponse'
         }
 
         self.attribute_map = {
@@ -70,7 +70,7 @@ class BatchStatus(object):
         self.requests = None  # list[BatchRequest]
         
         # Error of the request
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
 
     def __repr__(self):

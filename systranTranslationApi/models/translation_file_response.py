@@ -33,7 +33,7 @@ class TranslationFileResponse(object):
         """
         self.systran_types = {
             'warning': 'str',
-            'error': 'str',
+            'error': 'ErrorResponse',
             'request_id': 'str'
         }
 
@@ -47,7 +47,7 @@ class TranslationFileResponse(object):
         self.warning = None  # str
         
         # Error at request level
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
         # Request identifier to use to get the status, the result of the request and to cancel it in asynchronous mode
         self.request_id = None  # str

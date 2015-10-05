@@ -39,7 +39,7 @@ class TranslationApi(object):
             self.api_client = configuration.api_client
     
     
-    def translation_batch_cancel_get(self, batch_id, **kwargs):
+    def translation_file_batch_cancel_get(self, batch_id, **kwargs):
         """
         Batch Cancel
         Cancel a translation batch\n
@@ -52,18 +52,18 @@ class TranslationApi(object):
         
         # verify the required parameter 'batch_id' is set
         if batch_id is None:
-            raise ValueError("Missing the required parameter `batch_id` when calling `translation_batch_cancel_get`")
+            raise ValueError("Missing the required parameter `batch_id` when calling `translation_file_batch_cancel_get`")
         
         all_params = ['batch_id', 'callback']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_batch_cancel_get" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_batch_cancel_get" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/translation/batch/cancel'.replace('{format}', 'json')
+        resource_path = '/translation/file/batch/cancel'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -100,7 +100,7 @@ class TranslationApi(object):
         
         return response
         
-    def translation_batch_close_get(self, batch_id, **kwargs):
+    def translation_file_batch_close_get(self, batch_id, **kwargs):
         """
         Batch Close
         Close a translation batch\n
@@ -113,18 +113,18 @@ class TranslationApi(object):
         
         # verify the required parameter 'batch_id' is set
         if batch_id is None:
-            raise ValueError("Missing the required parameter `batch_id` when calling `translation_batch_close_get`")
+            raise ValueError("Missing the required parameter `batch_id` when calling `translation_file_batch_close_get`")
         
         all_params = ['batch_id', 'callback']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_batch_close_get" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_batch_close_get" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/translation/batch/close'.replace('{format}', 'json')
+        resource_path = '/translation/file/batch/close'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -161,7 +161,7 @@ class TranslationApi(object):
         
         return response
         
-    def translation_batch_create_get(self, **kwargs):
+    def translation_file_batch_create_get(self, **kwargs):
         """
         Batch Create
         Create a new translation batch\n
@@ -176,11 +176,11 @@ class TranslationApi(object):
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_batch_create_get" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_batch_create_get" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/translation/batch/create'.replace('{format}', 'json')
+        resource_path = '/translation/file/batch/create'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -214,7 +214,7 @@ class TranslationApi(object):
         
         return response
         
-    def translation_batch_status_get(self, batch_id, **kwargs):
+    def translation_file_batch_status_get(self, batch_id, **kwargs):
         """
         Batch Status
         Get the status of a translation batch\n
@@ -227,18 +227,18 @@ class TranslationApi(object):
         
         # verify the required parameter 'batch_id' is set
         if batch_id is None:
-            raise ValueError("Missing the required parameter `batch_id` when calling `translation_batch_status_get`")
+            raise ValueError("Missing the required parameter `batch_id` when calling `translation_file_batch_status_get`")
         
         all_params = ['batch_id', 'callback']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_batch_status_get" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_batch_status_get" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/translation/batch/status'.replace('{format}', 'json')
+        resource_path = '/translation/file/batch/status'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -272,6 +272,302 @@ class TranslationApi(object):
         response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
                                             body=body_params, post_params=form_params, files=files,
                                             response='BatchStatus', auth_settings=auth_settings)
+        
+        return response
+        
+    def translation_file_cancel_get(self, request_id, **kwargs):
+        """
+        Translate Cancel
+        Cancel an asynchronous translation request\n
+
+        :param str request_id: Request Identifier\n (required)
+        :param str callback: Javascript callback function name for JSONP Support\n 
+        
+        :return: TranslationCancel
+        """
+        
+        # verify the required parameter 'request_id' is set
+        if request_id is None:
+            raise ValueError("Missing the required parameter `request_id` when calling `translation_file_cancel_get`")
+        
+        all_params = ['request_id', 'callback']
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_cancel_get" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/translation/file/cancel'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+        
+        query_params = {}
+        
+        if 'request_id' in params:
+            query_params['requestId'] = params['request_id']
+        
+        if 'callback' in params:
+            query_params['callback'] = params['callback']
+        
+        header_params = {}
+        
+        form_params = {}
+        files = {}
+        
+        body_params = None
+        
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type([])
+
+        # Authentication setting
+        auth_settings = ['accessToken', 'apiKey']
+
+        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
+                                            body=body_params, post_params=form_params, files=files,
+                                            response='TranslationCancel', auth_settings=auth_settings)
+        
+        return response
+        
+    def translation_file_result_get(self, request_id, **kwargs):
+        """
+        Translate Result
+        Get the result of an asynchronous translation request\n\nDepending on the initial request, the response can have multiple formats:\n  * The **translated document**, directly, if `source` parameters was not `auto` and `withSource` was not true\n  * A `multipart/mixed` document with the following parts:\n\n    1. **Detected language**, if request was done with `auto` source language\n\n      * Header:\n\n        `part-name: detectedLanguage`\n\n      * Body: JSON document\n        ```\n        {\n          detectedLanguage: \"string\"\n          detectedLanguageConfidence : number\n        }\n        ```\n\n    2. **Source document**, if request was done with `withSource`:\n\n      * Header: `part-name: source`\n      * Body: Source document\n\n    3. **Translated document**\n\n      * Header: `part-name: output`\n\n      * Body: Translated document\n\nAn error can occur in the following cases:\n* Invalid request ID\n* No result available (see request status for more information)\n* Unable to retrieve the result\n* ...\n
+
+        :param str request_id: Request Identifier\n (required)
+        :param str callback: Javascript callback function name for JSONP Support\n 
+        
+        :return: TranslationFileResponse
+        """
+        
+        # verify the required parameter 'request_id' is set
+        if request_id is None:
+            raise ValueError("Missing the required parameter `request_id` when calling `translation_file_result_get`")
+        
+        all_params = ['request_id', 'callback']
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_result_get" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/translation/file/result'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+        
+        query_params = {}
+        
+        if 'request_id' in params:
+            query_params['requestId'] = params['request_id']
+        
+        if 'callback' in params:
+            query_params['callback'] = params['callback']
+        
+        header_params = {}
+        
+        form_params = {}
+        files = {}
+        
+        body_params = None
+        
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json', 'multipart/mixed', '*/*'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type([])
+
+        # Authentication setting
+        auth_settings = ['accessToken', 'apiKey']
+
+        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
+                                            body=body_params, post_params=form_params, files=files,
+                                            response='TranslationFileResponse', auth_settings=auth_settings)
+        
+        return response
+        
+    def translation_file_status_get(self, request_id, **kwargs):
+        """
+        Translate Status
+        Get the status of an asynchronous translation request\n\nThe translation result is available when the value of the status field is `finished`.\n\nThe translation request is unsuccessful when the value of the status field is `error`.\n
+
+        :param str request_id: Request Identifier\n (required)
+        :param str callback: Javascript callback function name for JSONP Support\n 
+        
+        :return: TranslationStatus
+        """
+        
+        # verify the required parameter 'request_id' is set
+        if request_id is None:
+            raise ValueError("Missing the required parameter `request_id` when calling `translation_file_status_get`")
+        
+        all_params = ['request_id', 'callback']
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_status_get" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/translation/file/status'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+        
+        query_params = {}
+        
+        if 'request_id' in params:
+            query_params['requestId'] = params['request_id']
+        
+        if 'callback' in params:
+            query_params['callback'] = params['callback']
+        
+        header_params = {}
+        
+        form_params = {}
+        files = {}
+        
+        body_params = None
+        
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type([])
+
+        # Authentication setting
+        auth_settings = ['accessToken', 'apiKey']
+
+        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
+                                            body=body_params, post_params=form_params, files=files,
+                                            response='TranslationStatus', auth_settings=auth_settings)
+        
+        return response
+        
+    def translation_file_translate_get(self, input, target, **kwargs):
+        """
+        Translate File
+        Translate a file from source language to target language\n\n\n* In asynchronous mode (async=true), the response will be a JSON containing a request identifier. This identifier can then be used to poll the request status and its result when completed.\n\n  ```\n  {\n     \"requestId\": \"54a3d860e62ea467b136eddb\" /* Request identifier to use to get the status,\n                                                the result of the request and to cancel it */\n     \"error\": {\n       \"message\": \"\" /* Error at request level */\n       \"info\": {}\n     }\n  }\n  ```\n\n* In synchronous mode, the response will be either:\n\n  * The **translated document**, directly, if `source` parameters was not `auto` and `withSource` was not true\n  * A `multipart/mixed` document with the following parts:\n\n    1. **Detected language**, if request was done with `auto` source language\n\n      * Header:\n\n        `part-name: detectedLanguage`\n\n      * Body: JSON document\n        ```\n        {\n          detectedLanguage: \"string\"\n          detectedLanguageConfidence : number\n        }\n        ```\n\n    2. **Source document**, if request was done with `withSource`:\n\n      * Header: `part-name: source`\n      * Body: Source document\n\n    3. **Translated document**\n\n      * Header: `part-name: output`\n\n      * Body: Translated document\n
+
+        :param File input: Input file\n (required)
+        :param str source: Source language code ([details](#description_langage_code_values)) or `auto`.\n\nWhen the value is set to `auto`, the language will be automatically detected, used to enhance the translation, and returned in output.\n 
+        :param str target: Target language code ([details](#description_langage_code_values)) (required)
+        :param str format: Format of the source text.\n\nValid values are `text` for plain text, `html` for HTML pages, and `auto` for automatic detection. The MIME type of file format supported by SYSTRAN can also be used (application/vnd.openxmlformats, application/vnd.oasis.opendocument, ...)\n 
+        :param int profile: Profile id\n 
+        :param bool with_source: If `true`, the source will also be sent back in the response message. It can be useful when used with the withAnnotations option to align the source document with the translated document\n 
+        :param bool with_annotations: If `true`, different annotations will be provided in the translated document. If the option 'withSource' is used, the annotations will also be provided in the source document. It will provide segments, tokens, not found words,...\n 
+        :param str with_dictionary: User Dictionary or/and Normalization Dictionary ids to be applied to the translation result. Each dictionary 'id' has to be separate by a comma.\n 
+        :param str with_corpus: Corpus to be applied to the translation result. Each corpus 'id' has to be separate by a comma.\n 
+        :param list[str] options: Additional options.\n\nAn option can be a JSON object containing a set of key/value generic options supported by the translator. It can also be a string with the syntax '<key>:<value>' to pass a key/value generic option to the translator.\n 
+        :param str encoding: Encoding. `base64` can be useful to send binary documents in the JSON body. Please note that another alternative is to use translateFile\n 
+        :param bool async: If `true`, the translation is performed asynchronously.\n\nThe \"/translate/status\" service must be used to wait for the completion of the request and the \"translate/result\" service must be used to get the final result. The \"/translate/cancel\" can be used to cancel the request.\n 
+        :param str batch_id: Batch Identifier\n 
+        :param str callback: Javascript callback function name for JSONP Support\n 
+        
+        :return: TranslationFileResponse
+        """
+        
+        # verify the required parameter 'input' is set
+        if input is None:
+            raise ValueError("Missing the required parameter `input` when calling `translation_file_translate_get`")
+        
+        # verify the required parameter 'target' is set
+        if target is None:
+            raise ValueError("Missing the required parameter `target` when calling `translation_file_translate_get`")
+        
+        all_params = ['input', 'source', 'target', 'format', 'profile', 'with_source', 'with_annotations', 'with_dictionary', 'with_corpus', 'options', 'encoding', 'async', 'batch_id', 'callback']
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_file_translate_get" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/translation/file/translate'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+        
+        query_params = {}
+        
+        if 'source' in params:
+            query_params['source'] = params['source']
+        
+        if 'target' in params:
+            query_params['target'] = params['target']
+        
+        if 'format' in params:
+            query_params['format'] = params['format']
+        
+        if 'profile' in params:
+            query_params['profile'] = params['profile']
+        
+        if 'with_source' in params:
+            query_params['withSource'] = params['with_source']
+        
+        if 'with_annotations' in params:
+            query_params['withAnnotations'] = params['with_annotations']
+        
+        if 'with_dictionary' in params:
+            query_params['withDictionary'] = params['with_dictionary']
+        
+        if 'with_corpus' in params:
+            query_params['withCorpus'] = params['with_corpus']
+        
+        if 'options' in params:
+            query_params['options'] = params['options']
+        
+        if 'encoding' in params:
+            query_params['encoding'] = params['encoding']
+        
+        if 'async' in params:
+            query_params['async'] = params['async']
+        
+        if 'batch_id' in params:
+            query_params['batchId'] = params['batch_id']
+        
+        if 'callback' in params:
+            query_params['callback'] = params['callback']
+        
+        header_params = {}
+        
+        form_params = {}
+        files = {}
+        
+        if 'input' in params:
+            files['input'] = params['input']
+        
+        body_params = None
+        
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json', 'multipart/mixed', '*/*'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(['multipart/form-data', 'application/x-www-form-urlencoded', '*/*'])
+
+        # Authentication setting
+        auth_settings = ['accessToken', 'apiKey']
+
+        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
+                                            body=body_params, post_params=form_params, files=files,
+                                            response='TranslationFileResponse', auth_settings=auth_settings)
         
         return response
         
@@ -401,7 +697,7 @@ class TranslationApi(object):
         
         return response
         
-    def translation_translate_get(self, input, target, **kwargs):
+    def translation_text_translate_get(self, input, target, **kwargs):
         """
         Translate
         Translate text from source language to target language\n
@@ -418,8 +714,6 @@ class TranslationApi(object):
         :param bool back_translation: If `true`, the translated text will be translated back in source language\n 
         :param list[str] options: Additional options.\n\nAn option can be a JSON object containing a set of key/value generic options supported by the translator. It can also be a string with the syntax '<key>:<value>' to pass a key/value generic option to the translator.\n 
         :param str encoding: Encoding. `base64` can be useful to send binary documents in the JSON body. Please note that another alternative is to use translateFile\n 
-        :param bool async: If `true`, the translation is performed asynchronously.\n\nThe \"/translate/status\" service must be used to wait for the completion of the request and the \"translate/result\" service must be used to get the final result. The \"/translate/cancel\" can be used to cancel the request.\n 
-        :param str batch_id: Batch Identifier\n 
         :param str callback: Javascript callback function name for JSONP Support\n 
         
         :return: TranslationResponse
@@ -427,22 +721,22 @@ class TranslationApi(object):
         
         # verify the required parameter 'input' is set
         if input is None:
-            raise ValueError("Missing the required parameter `input` when calling `translation_translate_get`")
+            raise ValueError("Missing the required parameter `input` when calling `translation_text_translate_get`")
         
         # verify the required parameter 'target' is set
         if target is None:
-            raise ValueError("Missing the required parameter `target` when calling `translation_translate_get`")
+            raise ValueError("Missing the required parameter `target` when calling `translation_text_translate_get`")
         
-        all_params = ['input', 'source', 'target', 'format', 'profile', 'with_source', 'with_annotations', 'with_dictionary', 'with_corpus', 'back_translation', 'options', 'encoding', 'async', 'batch_id', 'callback']
+        all_params = ['input', 'source', 'target', 'format', 'profile', 'with_source', 'with_annotations', 'with_dictionary', 'with_corpus', 'back_translation', 'options', 'encoding', 'callback']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_translate_get" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method translation_text_translate_get" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/translation/translate'.replace('{format}', 'json')
+        resource_path = '/translation/text/translate'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -485,12 +779,6 @@ class TranslationApi(object):
         if 'encoding' in params:
             query_params['encoding'] = params['encoding']
         
-        if 'async' in params:
-            query_params['async'] = params['async']
-        
-        if 'batch_id' in params:
-            query_params['batchId'] = params['batch_id']
-        
         if 'callback' in params:
             query_params['callback'] = params['callback']
         
@@ -515,302 +803,6 @@ class TranslationApi(object):
         response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
                                             body=body_params, post_params=form_params, files=files,
                                             response='TranslationResponse', auth_settings=auth_settings)
-        
-        return response
-        
-    def translation_translate_cancel_get(self, request_id, **kwargs):
-        """
-        Translate Cancel
-        Cancel an asynchronous translation request\n
-
-        :param str request_id: Request Identifier\n (required)
-        :param str callback: Javascript callback function name for JSONP Support\n 
-        
-        :return: TranslationCancel
-        """
-        
-        # verify the required parameter 'request_id' is set
-        if request_id is None:
-            raise ValueError("Missing the required parameter `request_id` when calling `translation_translate_cancel_get`")
-        
-        all_params = ['request_id', 'callback']
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_translate_cancel_get" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resource_path = '/translation/translate/cancel'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-        
-        query_params = {}
-        
-        if 'request_id' in params:
-            query_params['requestId'] = params['request_id']
-        
-        if 'callback' in params:
-            query_params['callback'] = params['callback']
-        
-        header_params = {}
-        
-        form_params = {}
-        files = {}
-        
-        body_params = None
-        
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type([])
-
-        # Authentication setting
-        auth_settings = ['accessToken', 'apiKey']
-
-        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
-                                            body=body_params, post_params=form_params, files=files,
-                                            response='TranslationCancel', auth_settings=auth_settings)
-        
-        return response
-        
-    def translation_translate_file_get(self, input, target, **kwargs):
-        """
-        Translate File
-        Translate a file from source language to target language\n\n\n* In asynchronous mode (async=true), the response will be a JSON containing a request identifier. This identifier can then be used to poll the request status and its result when completed.\n\n  ```\n  {\n     \"requestId\": \"54a3d860e62ea467b136eddb\" /* Request identifier to use to get the status,\n                                                the result of the request and to cancel it */\n     \"error\": \"\", /* Error at request level */\n  }\n  ```\n\n* In synchronous mode, the response will be either:\n\n  * The **translated document**, directly, if `source` parameters was not `auto` and `withSource` was not true\n  * A `multipart/mixed` document with the following parts:\n\n    1. **Detected language**, if request was done with `auto` source language\n\n      * Header:\n\n        `part-name: detectedLanguage`\n\n      * Body: JSON document\n        ```\n        {\n          detectedLanguage: \"string\"\n          detectedLanguageConfidence : number\n        }\n        ```\n\n    2. **Source document**, if request was done with `withSource`:\n\n      * Header: `part-name: source`\n      * Body: Source document\n\n    3. **Translated document**\n\n      * Header: `part-name: output`\n\n      * Body: Translated document\n
-
-        :param File input: Input file\n (required)
-        :param str source: Source language code ([details](#description_langage_code_values)) or `auto`.\n\nWhen the value is set to `auto`, the language will be automatically detected, used to enhance the translation, and returned in output.\n 
-        :param str target: Target language code ([details](#description_langage_code_values)) (required)
-        :param str format: Format of the source text.\n\nValid values are `text` for plain text, `html` for HTML pages, and `auto` for automatic detection. The MIME type of file format supported by SYSTRAN can also be used (application/vnd.openxmlformats, application/vnd.oasis.opendocument, ...)\n 
-        :param int profile: Profile id\n 
-        :param bool with_source: If `true`, the source will also be sent back in the response message. It can be useful when used with the withAnnotations option to align the source document with the translated document\n 
-        :param bool with_annotations: If `true`, different annotations will be provided in the translated document. If the option 'withSource' is used, the annotations will also be provided in the source document. It will provide segments, tokens, not found words,...\n 
-        :param str with_dictionary: User Dictionary or/and Normalization Dictionary ids to be applied to the translation result. Each dictionary 'id' has to be separate by a comma.\n 
-        :param str with_corpus: Corpus to be applied to the translation result. Each corpus 'id' has to be separate by a comma.\n 
-        :param list[str] options: Additional options.\n\nAn option can be a JSON object containing a set of key/value generic options supported by the translator. It can also be a string with the syntax '<key>:<value>' to pass a key/value generic option to the translator.\n 
-        :param str encoding: Encoding. `base64` can be useful to send binary documents in the JSON body. Please note that another alternative is to use translateFile\n 
-        :param bool async: If `true`, the translation is performed asynchronously.\n\nThe \"/translate/status\" service must be used to wait for the completion of the request and the \"translate/result\" service must be used to get the final result. The \"/translate/cancel\" can be used to cancel the request.\n 
-        :param str batch_id: Batch Identifier\n 
-        :param str callback: Javascript callback function name for JSONP Support\n 
-        
-        :return: TranslationFileResponse
-        """
-        
-        # verify the required parameter 'input' is set
-        if input is None:
-            raise ValueError("Missing the required parameter `input` when calling `translation_translate_file_get`")
-        
-        # verify the required parameter 'target' is set
-        if target is None:
-            raise ValueError("Missing the required parameter `target` when calling `translation_translate_file_get`")
-        
-        all_params = ['input', 'source', 'target', 'format', 'profile', 'with_source', 'with_annotations', 'with_dictionary', 'with_corpus', 'options', 'encoding', 'async', 'batch_id', 'callback']
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_translate_file_get" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resource_path = '/translation/translate/file'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-        
-        query_params = {}
-        
-        if 'source' in params:
-            query_params['source'] = params['source']
-        
-        if 'target' in params:
-            query_params['target'] = params['target']
-        
-        if 'format' in params:
-            query_params['format'] = params['format']
-        
-        if 'profile' in params:
-            query_params['profile'] = params['profile']
-        
-        if 'with_source' in params:
-            query_params['withSource'] = params['with_source']
-        
-        if 'with_annotations' in params:
-            query_params['withAnnotations'] = params['with_annotations']
-        
-        if 'with_dictionary' in params:
-            query_params['withDictionary'] = params['with_dictionary']
-        
-        if 'with_corpus' in params:
-            query_params['withCorpus'] = params['with_corpus']
-        
-        if 'options' in params:
-            query_params['options'] = params['options']
-        
-        if 'encoding' in params:
-            query_params['encoding'] = params['encoding']
-        
-        if 'async' in params:
-            query_params['async'] = params['async']
-        
-        if 'batch_id' in params:
-            query_params['batchId'] = params['batch_id']
-        
-        if 'callback' in params:
-            query_params['callback'] = params['callback']
-        
-        header_params = {}
-        
-        form_params = {}
-        files = {}
-        
-        if 'input' in params:
-            files['input'] = params['input']
-        
-        body_params = None
-        
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json', 'multipart/mixed', '*/*'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(['multipart/form-data', 'application/x-www-form-urlencoded', '*/*'])
-
-        # Authentication setting
-        auth_settings = ['accessToken', 'apiKey']
-
-        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
-                                            body=body_params, post_params=form_params, files=files,
-                                            response='TranslationFileResponse', auth_settings=auth_settings)
-        
-        return response
-        
-    def translation_translate_result_get(self, request_id, **kwargs):
-        """
-        Translate Result
-        Get the result of an asynchronous translation request\n\nDepending on the initial request, the response can have multiple formats:\n* `/translation/translate` initiated request\n\n    &#x2192; the response will be a JSON document (model below)\n\n* `/translation/translate/file` initiated request\n\n   &#x2192; the response will be either:\n\n  * The **translated document**, directly, if `source` parameters was not `auto` and `withSource` was not true\n  * A `multipart/mixed` document with the following parts:\n\n    1. **Detected language**, if request was done with `auto` source language\n\n      * Header:\n\n        `part-name: detectedLanguage`\n\n      * Body: JSON document\n        ```\n        {\n          detectedLanguage: \"string\"\n          detectedLanguageConfidence : number\n        }\n        ```\n\n    2. **Source document**, if request was done with `withSource`:\n\n      * Header: `part-name: source`\n      * Body: Source document\n\n    3. **Translated document**\n\n      * Header: `part-name: output`\n\n      * Body: Translated document\n\nAn error can occur in the following cases:\n* Invalid request ID\n* No result available (see request status for more information)\n* Unable to retrieve the result\n* ...\n
-
-        :param str request_id: Request Identifier\n (required)
-        :param str callback: Javascript callback function name for JSONP Support\n 
-        
-        :return: TranslationResponse
-        """
-        
-        # verify the required parameter 'request_id' is set
-        if request_id is None:
-            raise ValueError("Missing the required parameter `request_id` when calling `translation_translate_result_get`")
-        
-        all_params = ['request_id', 'callback']
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_translate_result_get" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resource_path = '/translation/translate/result'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-        
-        query_params = {}
-        
-        if 'request_id' in params:
-            query_params['requestId'] = params['request_id']
-        
-        if 'callback' in params:
-            query_params['callback'] = params['callback']
-        
-        header_params = {}
-        
-        form_params = {}
-        files = {}
-        
-        body_params = None
-        
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json', 'multipart/mixed', '*/*'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type([])
-
-        # Authentication setting
-        auth_settings = ['accessToken', 'apiKey']
-
-        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
-                                            body=body_params, post_params=form_params, files=files,
-                                            response='TranslationResponse', auth_settings=auth_settings)
-        
-        return response
-        
-    def translation_translate_status_get(self, request_id, **kwargs):
-        """
-        Translate Status
-        Get the status of an asynchronous translation request\n\nThe translation result is available when the value of the status field is `finished`.\n\nThe translation request is unsuccessful when the value of the status field is `error`.\n
-
-        :param str request_id: Request Identifier\n (required)
-        :param str callback: Javascript callback function name for JSONP Support\n 
-        
-        :return: TranslationStatus
-        """
-        
-        # verify the required parameter 'request_id' is set
-        if request_id is None:
-            raise ValueError("Missing the required parameter `request_id` when calling `translation_translate_status_get`")
-        
-        all_params = ['request_id', 'callback']
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method translation_translate_status_get" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resource_path = '/translation/translate/status'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-        
-        query_params = {}
-        
-        if 'request_id' in params:
-            query_params['requestId'] = params['request_id']
-        
-        if 'callback' in params:
-            query_params['callback'] = params['callback']
-        
-        header_params = {}
-        
-        form_params = {}
-        files = {}
-        
-        body_params = None
-        
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type([])
-
-        # Authentication setting
-        auth_settings = ['accessToken', 'apiKey']
-
-        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
-                                            body=body_params, post_params=form_params, files=files,
-                                            response='TranslationStatus', auth_settings=auth_settings)
         
         return response
         

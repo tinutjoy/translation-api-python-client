@@ -32,4 +32,5 @@ from .language_pair import LanguagePair
 from .supported_language_response import SupportedLanguageResponse
 from .profile import Profile
 from .profiles_response import ProfilesResponse
+from .error_response import ErrorResponse
 

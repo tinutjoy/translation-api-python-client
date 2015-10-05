@@ -32,7 +32,7 @@ class TranslationStatus(object):
         :param dict attribute_map: The key is attribute name and the value is json key in definition.
         """
         self.systran_types = {
-            'error': 'str',
+            'error': 'ErrorResponse',
             'batch_id': 'str',
             'cancelled': 'bool',
             'created_at': 'float',
@@ -58,7 +58,7 @@ class TranslationStatus(object):
         }
         
         # Error of the request
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
         # Batch Identifier
         self.batch_id = None  # str

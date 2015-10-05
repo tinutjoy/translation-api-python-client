@@ -32,7 +32,7 @@ class TranslationCancel(object):
         :param dict attribute_map: The key is attribute name and the value is json key in definition.
         """
         self.systran_types = {
-            'error': 'str'
+            'error': 'ErrorResponse'
         }
 
         self.attribute_map = {
@@ -40,7 +40,7 @@ class TranslationCancel(object):
         }
         
         # Error of the request
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
 
     def __repr__(self):

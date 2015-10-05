@@ -33,7 +33,7 @@ class BatchCreate(object):
         """
         self.systran_types = {
             'batch_id': 'str',
-            'error': 'str'
+            'error': 'ErrorResponse'
         }
 
         self.attribute_map = {
@@ -45,7 +45,7 @@ class BatchCreate(object):
         self.batch_id = None  # str
         
         # Error of the request
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
 
     def __repr__(self):

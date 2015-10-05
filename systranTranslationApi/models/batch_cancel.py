@@ -33,7 +33,7 @@ class BatchCancel(object):
         """
         self.systran_types = {
             'status': 'str',
-            'error': 'str'
+            'error': 'ErrorResponse'
         }
 
         self.attribute_map = {
@@ -45,7 +45,7 @@ class BatchCancel(object):
         self.status = None  # str
         
         # Error of the request
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
 
     def __repr__(self):

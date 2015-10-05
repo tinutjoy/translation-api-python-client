@@ -43,21 +43,21 @@ class TranslationApiTests(unittest.TestCase):
         source = "en"
         target = "fr"
         input = ["This is a test"]
-        result = self.translation_api.translation_translate_get(source=source, target=target, input=input)
+        result = self.translation_api.translation_text_translate_get(source=source, target=target, input=input)
         self.assertIsNotNone(result)
         print result.__repr__()
 
     def test_translation_translate_get_auto_fr(self):
         target = "fr"
         input = ["This is a test"]
-        result = self.translation_api.translation_translate_get(target=target, input=input)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input)
         self.assertIsNotNone(result)
         print result.__repr__()
 
     def test_translation_translate_get_auto_fr_with_several_inputs(self):
         target = "fr"
         input = ["This is a test", "I like playing football"]
-        result = self.translation_api.translation_translate_get(target=target, input=input)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input)
         self.assertIsNotNone(result)
         print result.__repr__()
 
@@ -65,14 +65,14 @@ class TranslationApiTests(unittest.TestCase):
         target = "fr"
         input = ["This is a test", "I like playing football"]
         with_source = True
-        result = self.translation_api.translation_translate_get(target=target, input=input, with_source=with_source)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input, with_source=with_source)
         self.assertIsNotNone(result)
         print result.__repr__()
 
     def test_translation_translate_get_auto_fr_html(self):
         target = "fr"
         input = ["<html>this is <b>black</b> dog"]
-        result = self.translation_api.translation_translate_get(target=target, input=input)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input)
         self.assertIsNotNone(result)
         print result.__repr__()
 
@@ -80,7 +80,7 @@ class TranslationApiTests(unittest.TestCase):
         target = "fr"
         input = ["<html>this is <b>black</b> dog"]
         format = "text/html"
-        result = self.translation_api.translation_translate_get(target=target, input=input, format=format)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input, format=format)
         self.assertIsNotNone(result)
         print result.__repr__()
 
@@ -90,7 +90,7 @@ class TranslationApiTests(unittest.TestCase):
         format = "text/html"
         with_source = True
         with_annotations = True
-        result = self.translation_api.translation_translate_get(target=target, input=input, format=format, with_source=with_source, with_annotations=with_annotations)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input, format=format, with_source=with_source, with_annotations=with_annotations)
         self.assertIsNotNone(result)
         print result.__repr__()
 
@@ -100,7 +100,7 @@ class TranslationApiTests(unittest.TestCase):
         format = "text/html"
         with_source = True
         with_annotations = True
-        result = self.translation_api.translation_translate_get(target=target, input=input, format=format, with_source=with_source, with_annotations=with_annotations)
+        result = self.translation_api.translation_text_translate_get(target=target, input=input, format=format, with_source=with_source, with_annotations=with_annotations)
         self.assertIsNotNone(result)
         print result.__repr__()
 
@@ -109,7 +109,7 @@ class TranslationApiTests(unittest.TestCase):
         target = "fr"
         with_source = True
         with_annotations = True
-        result = self.translation_api.translation_translate_file_get(target=target, input=input_file, with_source=with_source, with_annotations=with_annotations)
+        result = self.translation_api.translation_file_translate_get(target=target, input=input_file, with_source=with_source, with_annotations=with_annotations)
         self.assertIsNotNone(result)
         print "detectedLanguage : ", result["detected_language"]["detectedLanguage"]
         print "detectedLanguageConfidence : ", result["detected_language"]["detectedLanguageConfidence"]
@@ -126,7 +126,7 @@ class TranslationApiTests(unittest.TestCase):
 
     # translate file async
     def get_status(self, request_id):
-        result = self.translation_api.translation_translate_status_get(request_id=request_id)
+        result = self.translation_api.translation_file_status_get(request_id=request_id)
         self.assertIsNotNone(result)
         print "Get translation status : ", result.__repr__()
         if result.status == "finished":
@@ -137,7 +137,7 @@ class TranslationApiTests(unittest.TestCase):
             return 0
 
     def get_translation_translate_file_async_auto_fr_with_source_annotations(self, request_id):
-        result = self.translation_api.translation_translate_result_get(request_id=request_id)
+        result = self.translation_api.translation_file_result_get(request_id=request_id)
         self.assertIsNotNone(result)
         print "Get translation result : ", result.__repr__()
 
@@ -162,11 +162,12 @@ class TranslationApiTests(unittest.TestCase):
     def test_translation_translate_file_get_async_auto_fr_with_source_annotations(self):
         input_file = os.path.join(os.path.dirname(__file__), "", "test.html")
         target = "fr"
-        async = "true"
+        async = True
         with_source = True
         with_annotations = True
-        result = self.translation_api.translation_translate_file_get(target=target, input=input_file, async=async, with_source=with_source, with_annotations=with_annotations)
+        result = self.translation_api.translation_file_translate_get(target=target, input=input_file, async=async, with_source=with_source, with_annotations=with_annotations)
         self.assertIsNotNone(result)
+        self.assertIsNotNone(result.request_id)
         print result.__repr__()
         print result.request_id
 
@@ -180,30 +181,31 @@ class TranslationApiTests(unittest.TestCase):
 
     def test_translation_batch_complete(self):
         # create a batch to do some translations
-        new_batch = self.translation_api.translation_batch_create_get()
+        new_batch = self.translation_api.translation_file_batch_create_get()
         self.assertIsNotNone(new_batch)
         print "Create new batch response : ", new_batch.__repr__()
         self.assertIsNotNone(new_batch.batch_id)
 
         # get status for new created batch
         batch_id = new_batch.batch_id
-        batch_status = self.translation_api.translation_batch_status_get(batch_id=batch_id)
+        batch_status = self.translation_api.translation_file_batch_status_get(batch_id=batch_id)
         print "Batch status response : ", batch_status.__repr__()
 
         # add a translation to the batch
         input_file = os.path.join(os.path.dirname(__file__), "", "test.html")
         source = "en"
         target = "fr"
-        async = "true"
+        async = True
         with_source = True
         with_annotations = True
-        result = self.translation_api.translation_translate_file_get(source=source, target=target, input=input_file, async=async, with_source=with_source, with_annotations=with_annotations, batch_id=batch_id)
+        result = self.translation_api.translation_file_translate_get(source=source, target=target, input=input_file, async=async, with_source=with_source, with_annotations=with_annotations, batch_id=batch_id)
         self.assertIsNotNone(result)
+        self.assertIsNotNone(result.request_id)
         print result.__repr__()
         print result.request_id
 
         # get status after adding a translation request
-        batch_status = self.translation_api.translation_batch_status_get(batch_id=batch_id)
+        batch_status = self.translation_api.translation_file_batch_status_get(batch_id=batch_id)
         print "Batch status with a translation request : ", batch_status.__repr__()
 
         finished = 0
@@ -215,7 +217,7 @@ class TranslationApiTests(unittest.TestCase):
         self.get_translation_translate_file_async_auto_fr_with_source_annotations(result.request_id)
 
         # close the batch after getting result of translation
-        batch_close = self.translation_api.translation_batch_close_get(batch_id=batch_id)
+        batch_close = self.translation_api.translation_file_batch_close_get(batch_id=batch_id)
         print "Close the batch after getting translation result : ", batch_close.__repr__()
 
 if __name__ == '__main__':

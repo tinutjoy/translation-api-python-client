@@ -32,6 +32,7 @@ from .models.language_pair import LanguagePair
 from .models.supported_language_response import SupportedLanguageResponse
 from .models.profile import Profile
 from .models.profiles_response import ProfilesResponse
+from .models.error_response import ErrorResponse
 
 # import apis into sdk package
 from .apis.translation_api import TranslationApi

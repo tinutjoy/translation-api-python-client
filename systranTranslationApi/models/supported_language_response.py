@@ -33,7 +33,7 @@ class SupportedLanguageResponse(object):
         """
         self.systran_types = {
             'warning': 'str',
-            'error': 'str',
+            'error': 'ErrorResponse',
             'language_pairs': 'list[LanguagePair]'
         }
 
@@ -47,7 +47,7 @@ class SupportedLanguageResponse(object):
         self.warning = None  # str
         
         # Error at request level
-        self.error = None  # str
+        self.error = None  # ErrorResponse
         
         # Array of language pairs
         self.language_pairs = None  # list[LanguagePair]
