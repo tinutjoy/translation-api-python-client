@@ -5,15 +5,15 @@ import os
 import unittest
 import time
 
-import systranTranslationApi
-import systranTranslationApi.configuration
+import systran_translation_api
+import systran_translation_api.configuration
 
 class TranslationApiTests(unittest.TestCase):
     def setUp(self):
         api_key_file = os.path.join(os.path.dirname(__file__), "../", "api_key.txt")
-        systranTranslationApi.configuration.load_api_key(api_key_file)
-        self.api_client = systranTranslationApi.ApiClient()
-        self.translation_api = systranTranslationApi.TranslationApi(self.api_client)
+        systran_translation_api.configuration.load_api_key(api_key_file)
+        self.api_client = systran_translation_api.ApiClient()
+        self.translation_api = systran_translation_api.TranslationApi(self.api_client)
 
     def test_translation_supported_languages_get(self):
         result = self.translation_api.translation_supported_languages_get()
