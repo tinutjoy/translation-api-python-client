@@ -32,7 +32,7 @@ REQUIRES = ["urllib3 >= 1.10", "six >= 1.9", "certifi"]
 
 setup(
     name="translation-api-python-client",
-    version="1.0.0",
+    version="1.0.1",
     description="Rest Translation API",
     author_email="",
     url="",
