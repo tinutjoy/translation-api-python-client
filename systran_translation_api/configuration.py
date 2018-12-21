@@ -31,6 +31,7 @@ def load_api_key(api_key_file):
             # setup the key
             global api_key
             api_key["key"] = key
+            api_key["Authorization"] = key
 
         f.close()
     except IOError:
